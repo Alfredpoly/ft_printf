@@ -4,11 +4,6 @@
 
 t_print	*ft_initialize_tab(t_print *tab)
 {
-	tab->zero = 0;
-	tab->tl = 0;
-	tab->is_zero = 0;
-	tab->perc = 0;
-	tab->sp = 0;
 	return (tab);
 }
 
@@ -21,7 +16,7 @@ void	ft_print_char(t_print *tab)
 
 void	ft_what_format(t_print *tab, const char *format, int pos)
 {
-	
+
 	// if (format[pos] == 'c')
 	// 	ft_print_char(tab);
 	// if (format[pos] == 's')
@@ -47,13 +42,14 @@ void	ft_what_format(t_print *tab, const char *format, int pos)
 	// }
 }
 
-
 int	ft_printf(const char *format, ...)
 {
+	const char str:
 	t_print	*tab;
 	int		i;
 
 	i = 0;
+	str = ft_strdup(format);
 	tab = (t_print *)malloc(sizeof(t_print));
 	if (!tab)
 		return (0);
