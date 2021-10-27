@@ -1,11 +1,11 @@
-NAME = libft.a
+NAME = libftprintf.a
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 AR = ar ru
 RM = rm -f
 
-c-files = 
+c-files = ft_printf.c ft_nb_to_hex.c ft_deci_fd.c ft_nb_to_hex_upper.c libft/ft_calloc.c libft/ft_bzero.c libft/ft_putchar_fd.c libft/ft_putnbr_fd.c libft/ft_putstr_fd.c libft/ft_strlen.c
 
 c-bonus = 
 

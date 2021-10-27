@@ -1,72 +1,67 @@
 #include "ft_printf.h"
-#include "../libft/libft.h"
-#include <stdio.h>
 
-t_print	*ft_initialize_tab(t_print *tab)
+int	ft_what_format(va_list args, const char *format, int pos)
 {
-	return (tab);
-}
+	int	ret;
 
-void	ft_print_char(t_print *tab)
-{
-	char	a;
-
-	a = va_arg(tab->args, int);
-}
-
-void	ft_what_format(t_print *tab, const char *format, int pos)
-{
-
-	// if (format[pos] == 'c')
-	// 	ft_print_char(tab);
-	// if (format[pos] == 's')
-	// {
-	// }
-	// if (format[pos] == 'p')
-	// {
-	// }
-	// if (format[pos] == 'd' || format[pos] == 'i')
-	// {
-	// }
-	// if (format[pos] == 'u')
-	// {
-	// }
-	// if (format[pos] == 'x')
-	// {
-	// }
-	// if (format[pos] == 'X')
-	// {
-	// }
-	// if (format[pos] == '%')
-	// {
-	// }
+	ret = 0;
+	if (format[pos] == 'c')
+		ret = ft_putchar_fd(va_arg(args, int), 1);
+	if (format[pos] == 's')
+		ret = ft_putstr_fd(va_arg(args, char *), 1);
+	if (format[pos] == 'p')
+	{
+		ret = ft_putchar_fd('0', 1);
+		ret = ret + ft_putchar_fd('x', 1);
+		ret = ret + ft_putstr_fd(ft_nb_to_hex(va_arg(args, unsigned long)), 1);
+	}
+	if (format[pos] == 'd' || format[pos] == 'i')
+		ret = ft_putnbr_fd(va_arg(args, int), 1);
+	if (format[pos] == 'u')
+		ret = ft_deci_fd(va_arg(args, unsigned int), 1);
+	if (format[pos] == 'x')
+		ret = ft_putstr_fd(ft_nb_to_hex(va_arg(args, int)), 1);
+	if (format[pos] == 'X')
+		ret = ft_putstr_fd(ft_nb_to_hex_upper(va_arg(args, int)), 1);
+	if (format[pos] == '%')
+		ret = ft_putchar_fd(format[pos], 1);
+	return (ret);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	const char str:
-	t_print	*tab;
-	int		i;
+	int			i;
+	int			ret;
+	va_list		args;
 
-	i = 0;
-	str = ft_strdup(format);
-	tab = (t_print *)malloc(sizeof(t_print));
-	if (!tab)
-		return (0);
-	ft_initialize_tab(tab);
-	va_start(tab->args, format);
+	i = -1;
+	ret = -1;
+	va_start(args, format);
 	while (format[i++] != '\0')
 	{
 		if (format[i] == '%')
-			ft_what_format(tab, format, i + 1);
+		{
+			ret = ret + ft_what_format(args, format, i + 1);
+			i++;
+		}
 		else
-			write(1, &format[i], 1);
+			ret = ret + ft_putchar_fd(format[i], 1);
 	}
-	va_end(tab->args);
-	return (i);
+	va_end(args);
+	return (ret);
 }
 
-int	main()
-{
-	ft_printf("tsted %c", 'a');
-}
+// int	main()
+// {
+// 	int	a;
+// 	int b;
+// 	int c;
+// 	int	*ptr = &a;
+
+// 	b = ft_printf("%c\n", '!');
+// 	c = printf("%p\n", ptr);
+// 	printf("\nlen		=%d\nlen real	=%d", b, c);
+// 	// b = ft_printf("test |%c| |%s| |%p| |%d| |%i| |%u| |%%i| |%x| |%X|\n", 'a', "bdsd", ptr, 1545, 24, 295, 1256, 1256);
+// 	// c = printf("test |%c| |%s| |%p| |%d| |%i| |%u| |%%i| |%x| |%X|\n", 'a', "bdsd", ptr, 1545, 24, 295, 1256, 1256);
+// 	// printf("\nlen		=%d\nlen real	=%d", b, c);
+// }
