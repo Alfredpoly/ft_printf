@@ -5,18 +5,12 @@ CFLAGS = -Wall -Werror -Wextra
 AR = ar ru
 RM = rm -f
 
-c-files = ft_printf.c ft_nb_to_hex.c ft_deci_fd.c ft_nb_to_hex_upper.c libft/ft_calloc.c libft/ft_bzero.c libft/ft_putchar_fd.c libft/ft_putnbr_fd.c libft/ft_putstr_fd.c libft/ft_strlen.c
+c-files = ft_uintlen.c ft_puthex_upper_fd.c ft_hexlen.c ft_intlen.c ft_printf.c ft_puthex_fd.c ft_deci_fd.c ft_bzero.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_strlen.c
 
-c-bonus = 
 
-o-bonus = $(c-bonus:.c=.o)
 o-files = $(c-files:.c=.o)
 
-ifdef WITH_BONUS
-OBJ_FILES = $(o-files) $(o-bonus)
-else
 OBJ_FILES = $(o-files)
-endif
 
 all: $(NAME)
 

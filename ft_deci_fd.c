@@ -1,19 +1,12 @@
-#include "libft/libft.h"
+#include "ft_printf.h"
 
-int	ft_deci_fd(unsigned int n, int fd)
+void	ft_deci_fd(unsigned int n, int fd)
 {
-	int	ret;
-
-	ret = 0;
 	if (n >= 10)
 	{
-		ft_deci_fd(n / 10, fd);
-		ft_deci_fd(n % 10, fd);
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
 	if (n < 10)
-	{
 		ft_putchar_fd(n + '0', fd);
-		ret++;
-	}
-	return (ret);
 }
