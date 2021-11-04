@@ -8,7 +8,6 @@
 
 void	ft_deci_fd(unsigned int n, int fd);
 void	ft_puthex_fd(unsigned long n, int fd);
-char	*ft_nb_to_hex_upper(long int n);
 int		ft_printf(const char *format, ...);
 void	ft_bzero(void *dest, size_t len);
 size_t	ft_strlen(const char *str);

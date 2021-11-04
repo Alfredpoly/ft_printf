@@ -17,8 +17,3 @@ void	ft_puthex_fd(unsigned long int n, int fd)
 	if (n > 9 && n < 16)
 		ft_putchar_fd(97 - 10 + n, fd);
 }
-
-// int main()
-// {
-// 	ft_puthex_fd(-9223372036854775808, 1);
-// }
