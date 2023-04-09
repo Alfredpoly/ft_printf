@@ -6,9 +6,9 @@ The goal of this project is to create your own implementation of the C standard 
 
 The ft_printf() function works much like the standard printf() function, but has a few differences. To use it, you will need to include the ft_printf.h header file in your program, and call the ft_printf() function in place of printf().
 
+```
 #include "ft_printf.h"
 
-```
 int main()
 {
     ft_printf("Hello, %s!\n", "world");
